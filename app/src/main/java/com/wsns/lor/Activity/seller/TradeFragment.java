@@ -1,30 +1,25 @@
 package com.wsns.lor.Activity.seller;
 
+import android.app.Activity;
 import android.app.Fragment;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.wsns.lor.Activity.order.ProgressActivity;
+import com.wsns.lor.Activity.order.OrdersContentActivity;
+import com.wsns.lor.Activity.order.OrdresCreateActivity;
 import com.wsns.lor.Adapter.TypeTagAdapter;
-import com.wsns.lor.App.OnlineUserInfo;
 import com.wsns.lor.Listener.OnTagSelectListener;
 import com.wsns.lor.R;
-import com.wsns.lor.entity.Goods;
-import com.wsns.lor.entity.Seller;
+import com.wsns.lor.entity.Orders;
+import com.wsns.lor.entity.RepairGoods;
+import com.wsns.lor.entity.Sellers;
 import com.wsns.lor.http.HttpMethods;
 import com.wsns.lor.http.subscribers.ProgressSubscriber;
 import com.wsns.lor.http.subscribers.SubscriberOnNextListener;
@@ -35,7 +30,7 @@ import com.wsns.lor.view.layout.FlowTagLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.jpush.im.android.api.model.UserInfo;
+import static android.app.Activity.RESULT_OK;
 
 
 public class TradeFragment extends Fragment {
@@ -51,31 +46,21 @@ public class TradeFragment extends Fragment {
     private TypeTagAdapter<String> mBrandTagAdapter;
     private TypeTagAdapter<String> mTypeTagAdapter;
     private TypeTagAdapter<String> mChoiceTagAdapter;
-    private List<Goods> allDataSource = new ArrayList<>();
+    private List<RepairGoods> allDataSource = new ArrayList<>();
     String selectbrand;
     String selecttype;
-    String orderID;
-    private int change = 1;
     private Button submit;
     private List<String> dataSource = new ArrayList<>();
     View view;
-    SubscriberOnNextListener<String> getTradeResult;
-    SubscriberOnNextListener<List<Goods>> getGoodsResult;
-    Seller seller;
-
-    public TradeFragment() {
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    SubscriberOnNextListener<List<RepairGoods>> getGoodsResult;
+    Sellers seller;
+    String goods;
+    Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        activity=getActivity();
         view = inflater.inflate(R.layout.fragment_trade, container, false);
         mBrandFlowTagLayout = (FlowTagLayout) view.findViewById(R.id.brand_flow_layout);
         mTypeFlowTagLayout = (FlowTagLayout) view.findViewById(R.id.type_flow_layout);
@@ -87,22 +72,16 @@ public class TradeFragment extends Fragment {
         etaddress = (EditText) view.findViewById(R.id.et_address);
         ettel = (EditText) view.findViewById(R.id.et_tel);
         submit = (Button) view.findViewById(R.id.bt_submit);
-        tvstorename.setText(seller.getNick());
+        tvstorename.setText(seller.getTitle());
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (submit.getText().equals("去看看")) {
-                    Intent intent = new Intent(getActivity(), ProgressActivity.class);
-
-                    intent.putExtra("orderID", orderID);
-                    startActivity(intent);
-                } else
-                    UploadOrder();
+                UploadOrder();
             }
         });
 
-        //尺寸
+        //品牌
         mBrandTagAdapter = new TypeTagAdapter<>(getActivity());
         mBrandFlowTagLayout.setTagCheckedMode(FlowTagLayout.FLOW_TAG_CHECKED_SINGLE);
         mBrandFlowTagLayout.setAdapter(mBrandTagAdapter);
@@ -112,7 +91,6 @@ public class TradeFragment extends Fragment {
                 if (selectedList != null && selectedList.size() > 0) {
                     StringBuilder sb = new StringBuilder();
                     for (int i : selectedList) {
-
                         sb.append(parent.getAdapter().getItem(i));
                         selectbrand = parent.getAdapter().getItem(i).toString();
                         initChoiceData(selectbrand);
@@ -125,7 +103,7 @@ public class TradeFragment extends Fragment {
             }
         });
 
-        //移动研发标签
+        //型号标签
         mTypeTagAdapter = new TypeTagAdapter<>(getActivity());
         mTypeFlowTagLayout.setTagCheckedMode(FlowTagLayout.FLOW_TAG_CHECKED_SINGLE);
         mTypeFlowTagLayout.setAdapter(mTypeTagAdapter);
@@ -140,7 +118,8 @@ public class TradeFragment extends Fragment {
                     for (int i : selectedList) {
                         sb.append(parent.getAdapter().getItem(i));
                         selecttype = parent.getAdapter().getItem(i).toString();
-                        initChoiceData(selectbrand + selecttype);
+                        goods = selectbrand + "," + selecttype;
+                        initChoiceData(goods);
                     }
 
                 } else {
@@ -148,36 +127,24 @@ public class TradeFragment extends Fragment {
                 }
             }
         });
+        //结果
         mChoiceTagAdapter = new TypeTagAdapter<>(getActivity());
         mChoiceFlowTagLayout.setTagCheckedMode(FlowTagLayout.FLOW_TAG_CHECKED_NONE);
         mChoiceFlowTagLayout.setAdapter(mChoiceTagAdapter);
 
-        getTradeResult = new SubscriberOnNextListener<String>() {
-            @Override
-            public void onNext(String s) {
-                orderID=s;
-                Intent intent = new Intent(getActivity(), ProgressActivity.class);
-                intent.putExtra("orderID", orderID);
-                startActivity(intent);
-                submit.setText("去看看");
 
-                //发送推送
-            }
-        };
-        getGoodsResult = new SubscriberOnNextListener<List<Goods>>() {
+        getGoodsResult = new SubscriberOnNextListener<List<RepairGoods>>() {
             @Override
-            public void onNext(List<Goods> list) {
+            public void onNext(List<RepairGoods> list) {
                 getGoodsList(list);
-
             }
         };
 
         initChoiceData("");
-
+        initTypeData(-1);
         LoadGoodsData();
         return view;
     }
-
 
     private void UploadOrder() {
         String type;
@@ -186,13 +153,25 @@ public class TradeFragment extends Fragment {
         else
             type = "其他";
 
-        HttpMethods.getInstance().getTradeResult(new ProgressSubscriber(getTradeResult, getActivity(), true),
-                "Upload", seller.getID(),
-                OnlineUserInfo.myInfo.getUserName(), ettel.getText().toString(),
-                etname.getText().toString(),
-                etworktime.getText().toString(),
-                etdescribe.getText().toString(), type, etaddress.getText().toString());
-
+//        HttpMethods.getInstance().getTradeResult(new ProgressSubscriber(getTradeResult, getActivity(), true),
+//                "Upload", seller.getTitle(),
+//                OnlineUserInfo.myInfo.getUserName(), ettel.getText().toString(),
+//                etname.getText().toString(),
+//                etworktime.getText().toString(),
+//                etdescribe.getText().toString(), type, etaddress.getText().toString());
+        Intent intent = new Intent(getActivity(), OrdresCreateActivity.class);
+        Bundle bundle = new Bundle();
+        Orders orders = new Orders();
+        orders.setGoods(type);
+        orders.setNote(etdescribe.getText().toString());
+        orders.setWorkTime(etworktime.getText().toString());
+        orders.setRealName(etname.getText().toString());
+        orders.setAddress(etaddress.getText().toString());
+        orders.setPhone(ettel.getText().toString());
+        bundle.putSerializable("orders", orders);
+        bundle.putSerializable("sellers", seller);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, 0);
     }
 
 
@@ -211,21 +190,27 @@ public class TradeFragment extends Fragment {
         List<String> dataSource = new ArrayList<>();
         if (!choice.equals("")) {
             dataSource.add(choice.toString());
-
             mChoiceTagAdapter.clearAndAddAll(dataSource);
+        } else {
+            dataSource.add("未选择");
+            mChoiceTagAdapter.clearAndAddAll(dataSource);
+
         }
 
     }
 
     private void initTypeData(int i) {
         List<String> dataSource = new ArrayList<>();
-        if (i < allDataSource.size()) {
-            StringDivide dd = new StringDivide(allDataSource.get(i).getMatName());
+        if (i == -1) {
+            dataSource.add("请先选择生厂商");
+        } else if (i < allDataSource.size()) {
+            StringDivide dd = new StringDivide(allDataSource.get(i).getType());
             for (int j = 0; j < dd.getCount(); j++) {
                 dataSource.add(dd.getItem(j));
             }
             dataSource.add("其他");
         }
+
         mTypeTagAdapter.clearAndAddAll(dataSource);
     }
 
@@ -237,10 +222,10 @@ public class TradeFragment extends Fragment {
         dataSource.clear();
         for (int i = 0; i < allDataSource.size(); i++) {
 
-            dataSource.add(allDataSource.get(i).getManufacturers());
+            dataSource.add(allDataSource.get(i).getBrand());
         }
         for (int i = 0; i < allDataSource.size(); i++) {
-            System.out.println(dataSource.get(i) + "~" + allDataSource.get(i).getManufacturers());
+            System.out.println(dataSource.get(i) + "~" + allDataSource.get(i).getBrand());
         }
         dataSource.add("其他");
         mBrandTagAdapter.clearAndAddAll(dataSource);
@@ -249,10 +234,10 @@ public class TradeFragment extends Fragment {
 
     public void LoadGoodsData() {
         HttpMethods.getInstance().getGoodsResult(new ProgressSubscriber(getGoodsResult, getActivity(), false),
-                "get", seller.getID());
+                seller.getAccount());
     }
 
-    private void getGoodsList(List<Goods> list) {
+    private void getGoodsList(List<RepairGoods> list) {
         allDataSource.clear();
         for (int i = 0; i < list.size(); i++) {
             allDataSource.add(list.get(i));
@@ -261,7 +246,16 @@ public class TradeFragment extends Fragment {
     }
 
 
-    public void setSeller(Seller seller) {
+    public void setSeller(Sellers seller) {
         this.seller = seller;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+//            MainActivity.ordersPage=2;
+            activity.finish();
+
+        }
     }
 }

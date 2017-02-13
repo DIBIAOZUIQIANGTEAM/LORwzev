@@ -15,6 +15,24 @@ public class User implements Serializable {
     String name;
     String avatar;
     String email;
+     double coin;
+    String createDate;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public double getCoin() {
+        return coin;
+    }
+
+    public void setCoin(double coin) {
+        this.coin = coin;
+    }
 
     public int getId() {
         return id;

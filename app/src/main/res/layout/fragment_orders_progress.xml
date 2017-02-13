@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wsns.lor.view.layout.VRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_above="@+id/ll_handle">
+
+        <com.wsns.lor.view.layout.UnderLineLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/underline_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            app:line_dynamic_dimen="8dp"
+            app:line_margin_side="25dp">
+
+
+        </com.wsns.lor.view.layout.UnderLineLinearLayout>
+    </ScrollView>
+
+    </com.wsns.lor.view.layout.VRefreshLayout>
+    <LinearLayout
+        android:id="@+id/ll_handle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:elevation="2dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            android:background="@drawable/bg_btn_rectangle_blue"
+            android:text="取消接单" />
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:elevation="2dp"
+            android:background="@drawable/bg_btn_rectangle_yellow"
+            android:text="接单" />
+    </LinearLayout>
+
+
+</RelativeLayout>

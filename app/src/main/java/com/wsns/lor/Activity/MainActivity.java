@@ -6,43 +6,22 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wsns.lor.Activity.message.MessageFragment;
-import com.wsns.lor.Activity.more.MoreFragment;
-import com.wsns.lor.Activity.order.OrderFragment;
+import com.wsns.lor.fragment.chat.ConversationListFragment;
+import com.wsns.lor.fragment.orders.OrderListFragment;
 import com.wsns.lor.Activity.seller.SellerFragment;
-import com.wsns.lor.Manifest;
 import com.wsns.lor.R;
-import com.wsns.lor.utils.ToastUtil;
-
-import java.io.File;
-import java.util.List;
-import java.util.Map;
+import com.wsns.lor.fragment.more.MyProfileFragment;
 
 import cn.jpush.im.android.api.JMessageClient;
-import cn.jpush.im.android.api.callback.DownloadCompletionCallback;
-import cn.jpush.im.android.api.content.CustomContent;
-import cn.jpush.im.android.api.content.EventNotificationContent;
-import cn.jpush.im.android.api.content.ImageContent;
-import cn.jpush.im.android.api.content.VoiceContent;
-import cn.jpush.im.android.api.enums.ConversationType;
-import cn.jpush.im.android.api.event.ConversationRefreshEvent;
 import cn.jpush.im.android.api.event.LoginStateChangeEvent;
 import cn.jpush.im.android.api.event.MessageEvent;
-import cn.jpush.im.android.api.model.Conversation;
-import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
-import im.sdk.debug.activity.createmessage.CreateGroupTextMsgActivity;
-import im.sdk.debug.activity.createmessage.ShowCustomMessageActivity;
-import im.sdk.debug.activity.createmessage.ShowDownloadVoiceInfoActivity;
-import im.sdk.debug.activity.imagecontent.ShowDownloadPathActivity;
-import im.sdk.debug.activity.notify.ShowGroupNotificationActivity;
 import im.sdk.debug.activity.setting.ShowLogoutReasonActivity;
 
 /**
@@ -65,9 +44,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageView ivSeller, ivNotice, ivOrder, ivMore;
     private TextView tvSeller, tvNotice, tvOrder, tvMore;
     private SellerFragment sellerFragment;
-    private MessageFragment messageFragment;
-    private OrderFragment orderFragment;
-    private MoreFragment moreFragment;
+    private ConversationListFragment messageFragment;
+    private OrderListFragment orderFragment;
+    private MyProfileFragment moreFragment;
 
     private Fragment flag_fragment;
 
@@ -150,7 +129,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_notice:
                 if (messageFragment == null) {
-                    messageFragment = new MessageFragment();
+                    messageFragment = new ConversationListFragment();
                     transaction.add(R.id.fragment_content, messageFragment);
                 } else {
                     transaction.show(messageFragment);
@@ -161,7 +140,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_order:
                 if (orderFragment == null) {
-                    orderFragment = new OrderFragment();
+                    orderFragment = new OrderListFragment();
                     transaction.add(R.id.fragment_content, orderFragment);
                 } else {
                     transaction.show(orderFragment);
@@ -172,7 +151,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_more:
                 if (moreFragment == null) {
-                    moreFragment = new MoreFragment();
+                    moreFragment = new MyProfileFragment();
                     transaction.add(R.id.fragment_content, moreFragment);
                 } else {
                     transaction.show(moreFragment);
@@ -188,7 +167,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     public void onEventMainThread(MessageEvent event) {
-        messageFragment.refresh();
+
     }
 
 

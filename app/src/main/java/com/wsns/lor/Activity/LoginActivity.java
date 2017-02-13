@@ -160,9 +160,7 @@ public class LoginActivity extends Activity {
             public void onNext(User user) {
                 LoginActivity.this.user = user;
                 loginSuccess();
-
             }
-
         };
         initUser();
     }
@@ -230,8 +228,6 @@ public class LoginActivity extends Activity {
      * 登录
      */
     private void loginHttpRequest() {
-
-
         getUserData(new ProgressSubscriber(getUserDataOnNext, LoginActivity.this, true), account.getText().toString(), MD5.getMD5(password.getText().toString()));
     }
 

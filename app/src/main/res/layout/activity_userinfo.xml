@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eae7e7"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl_post_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:elevation="3dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/tv_post_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="个人信息"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+        />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        >
+        <RelativeLayout
+            android:id="@+id/fragment_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/tv_user_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="头像"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/av_user_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/unknow_avatar"
+                android:layout_marginEnd="20dp" />
+        </RelativeLayout>
+        <View
+            android:id="@+id/view0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#F2F2F2"></View>
+        <fragment
+            android:id="@+id/fragment_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            class="com.wsns.lor.fragment.InfoListFragment"
+            tools:layout="@layout/fragment_userinfo_list" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#F2F2F2"></View>
+
+
+        <fragment
+            android:id="@+id/fragment_user_coins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            class="com.wsns.lor.fragment.InfoListFragment"
+            tools:layout="@layout/fragment_userinfo_list" />
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#F2F2F2"></View>
+        <fragment
+            android:id="@+id/fragment_user_createdate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            class="com.wsns.lor.fragment.InfoListFragment"
+            tools:layout="@layout/fragment_userinfo_list" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_change_password"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/tv_updatepassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="修改密码"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_marginLeft="20dp"/>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_login_out"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_login"
+        android:layout_margin="5dp"
+        android:text="退出"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

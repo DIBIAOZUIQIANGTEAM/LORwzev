@@ -18,8 +18,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.wsns.lor.Activity.more.UpdatePasswordActivity;
 import com.wsns.lor.R;
 import com.wsns.lor.entity.User;
+import com.wsns.lor.http.HttpMethods;
+import com.wsns.lor.http.subscribers.ProgressSubscriber;
+import com.wsns.lor.http.subscribers.SubscriberOnNextListener;
+import com.wsns.lor.utils.MD5;
 
 import java.io.IOException;
 
@@ -47,6 +52,9 @@ public class ForgetPasswordThirdFragment extends Fragment{
     ImageView ivback;
     EditText etPassword;
     EditText etRepatedPassword;
+    SubscriberOnNextListener forgetPasswordOnNext;
+    SubscriberOnNextListener findUserOnNext;
+    User user;
 
     @Nullable
     @Override
@@ -66,11 +74,11 @@ public class ForgetPasswordThirdFragment extends Fragment{
         ivback = (ImageView) view.findViewById(R.id.iv_back);
         etPassword = (EditText) view.findViewById(R.id.et_mobile);
         etRepatedPassword = (EditText) view.findViewById(R.id.et_repated_password);
-
+        btnNext.setEnabled(false);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                regist();
+                regist();
             }
         });
         ivback.setOnClickListener(new View.OnClickListener() {
@@ -79,139 +87,68 @@ public class ForgetPasswordThirdFragment extends Fragment{
                 goBack();
             }
         });
-        getCurrentUser();
-    }
-    User currentUser=new User();
-    void getCurrentUser(){
+        forgetPasswordOnNext= new SubscriberOnNextListener<User>() {
+            @Override
+            public void onNext(User user) {
+                updatePasswordJM();
+            }
+        };
+        findUserOnNext= new SubscriberOnNextListener<User>() {
+            @Override
+            public void onNext(User user) {
+               ForgetPasswordThirdFragment.this.user= user;
+                btnNext.setEnabled(true);
+            }
+        };
 
-//        OkHttpClient client = Server.getSharedClient();
-//        MultipartBody requestBody = new MultipartBody.Builder()
-//                .addFormDataPart("account",phone)
-//                .build();
-//        Request request = Server.requestBuilderWithApi("user/finduser")
-//                .post(requestBody)
-//                .build();
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                activity.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(activity,"联网失败，请检查网络",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                String result = response.body().string();
-//                Log.e("debug","返回结果:"+result);
-//                currentUser = new ObjectMapper().readValue(result,User.class);
-//
-//            }
-//        });
+        HttpMethods.getInstance().findUser(new ProgressSubscriber(findUserOnNext, activity, false),
+              phone);
     }
 
-//    public void regist(){
-//        final String password = etPassword.getText().toString();
-//        if(!password.equals(etRepatedPassword.getText().toString())){
-//            Toast.makeText(activity,"前后密码不一致",Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        OkHttpClient client = Server.getSharedClient();
-//        MultipartBody requestBody = new MultipartBody.Builder()
-//                .addFormDataPart("account",phone)
-//                .addFormDataPart("newpassword", MD5.getMD5(password))
-//                .build();
-//        final Request request = Server.requestBuilderWithApi("user/forget/password")
-//                .post(requestBody)
-//                .build();
-//
-//        final ProgressDialog progressDialog = new ProgressDialog(activity);
-//        progressDialog.setMessage("修改中");
-//        progressDialog.setCancelable(false);
-//        progressDialog.setCanceledOnTouchOutside(false);
-//        progressDialog.show();
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                activity.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        progressDialog.dismiss();
-//                        Toast.makeText(activity,"联网失败，请检查网络",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                final String result = response.body().string();
-//                if (!request.equals("")) {
-//                    try {
-//                        User user = new ObjectMapper().readValue(result,User.class);
-//
-//                        JMessageClient.login(currentUser.getAccount(), currentUser.getPasswordHash(), new BasicCallback() {
-//                            @Override
-//                            public void gotResult(int i, String s) {
-//                                if(i==0){
-//                                    JMessageClient.updateUserPassword(currentUser.getPasswordHash(), MD5.getMD5(password), new BasicCallback() {
-//                                        @Override
-//                                        public void gotResult(int responseCode, String updadePasswordDesc) {
-//                                            if (responseCode == 0) {
-//                                                activity.runOnUiThread(new Runnable() {
-//                                                    @Override
-//                                                    public void run() {
-//                                                        progressDialog.dismiss();
-//                                                        Toast.makeText(activity, "修改成功", Toast.LENGTH_SHORT).show();
-//                                                        JMessageClient.logout();
-//                                                        activity.finish();
-//                                                    }
-//                                                });
-//                                            } else {
-//                                                activity.runOnUiThread(new Runnable() {
-//                                                    @Override
-//                                                    public void run() {
-//                                                        progressDialog.dismiss();
-//                                                        Toast.makeText(activity, "修改失败", Toast.LENGTH_SHORT).show();
-//                                                        JMessageClient.logout();
-//                                                        activity.finish();
-//                                                    }
-//                                                });
-//                                            }
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                        });
-//
-//
-//                    } catch (IOException e) {
-//                        activity.runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                progressDialog.dismiss();
-//                                Toast.makeText(activity, "修改密码失败", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//
-//                        e.printStackTrace();
-//                    }
-//                }
-//                else {
-//                    progressDialog.dismiss();
-//                    new AlertDialog.Builder(activity)
-//                            .setTitle("修改密码")
-//                            .setMessage("用户名不存在")
-//                            .setCancelable(true)
-//                            .setNegativeButton("去注册", null)
-//                            .show();
-//                }
-//
-//            }
-//
-//        });
-//    }
+    private void updatePasswordJM() {
+
+        JMessageClient.login(user.getAccount(), user.getPasswordHash(), new BasicCallback() {
+            @Override
+            public void gotResult(int i, String s) {
+                if (i == 0) {
+                    JMessageClient.updateUserPassword(user.getPasswordHash(), MD5.getMD5(etPassword.getText().toString()), new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String updadePasswordDesc) {
+                            if (responseCode == 0) {
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(activity, "修改成功", Toast.LENGTH_SHORT).show();
+                                        JMessageClient.logout();
+                                        activity.finish();
+                                    }
+                                });
+                            } else {
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(activity, "修改失败", Toast.LENGTH_SHORT).show();
+                                        JMessageClient.logout();
+                                        activity.finish();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    public void regist(){
+        final String password = etPassword.getText().toString();
+        if(!password.equals(etRepatedPassword.getText().toString())){
+            Toast.makeText(activity,"前后密码不一致",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        HttpMethods.getInstance().forgetPassword(new ProgressSubscriber(forgetPasswordOnNext, activity, true),
+                phone,MD5.getMD5(etPassword.getText().toString()));
+    }
 
     public static interface OnGoNextListener{
         void onGoNext();

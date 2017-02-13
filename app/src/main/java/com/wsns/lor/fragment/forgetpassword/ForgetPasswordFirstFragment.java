@@ -128,43 +128,13 @@ public class ForgetPasswordFirstFragment extends Fragment{
 
     void judgeUser(String account){
 
-//        OkHttpClient client = Server.getSharedClient();
-//        MultipartBody requestBody = new MultipartBody.Builder()
-//                .addFormDataPart("account",account)
-//                .build();
-//        Request request = Server.requestBuilderWithApi("user/finduser")
-//                .post(requestBody)
-//                .build();
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                activity.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(activity,"联网失败，请检查网络",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                String result = response.body().string();
-//                if(result.equals("")){
-//                    activity.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(activity,"当前用户账号不存在，请先注册",Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }else{
-//                    SMSSDK.getVerificationCode("86", etMobile.getText().toString());
-//                    SharedPreferences sharedPreferences = activity.getSharedPreferences("forgetpassword", Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("phone", etMobile.getText().toString());
-//                    editor.putString("country", "86");
-//                    editor.commit();
-//                }
-//            }
-//        });
+          SMSSDK.getVerificationCode("86", etMobile.getText().toString());
+         SharedPreferences sharedPreferences = activity.getSharedPreferences("forgetpassword", Context.MODE_PRIVATE);
+         SharedPreferences.Editor editor = sharedPreferences.edit();
+       editor.putString("phone", etMobile.getText().toString());
+           editor.putString("country", "86");
+      editor.commit();
+
     }
 
     public static interface OnGoNextListener{

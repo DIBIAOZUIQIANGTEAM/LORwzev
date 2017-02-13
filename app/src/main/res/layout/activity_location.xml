@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent" >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dip" />
 
-        <com.amap.api.maps.MapView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:background="#D000"
+        android:minWidth="100dip"
+        android:orientation="vertical"
+        android:padding="2dp"
+        android:layout_below="@+id/button1"
+        android:layout_toStartOf="@+id/button1"
+        android:layout_marginEnd="90dp">
+
+        <RadioGroup
             android:background="#ffffff"
-            android:orientation="horizontal"
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="定位icon" >
 
-            >
+            <RadioButton
+                android:id="@+id/defaulticon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:checked="true"
+                android:text="默认图标" >
+            </RadioButton>
 
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="东莞理工" />
+            <RadioButton
+                android:id="@+id/customicon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="自定义图标" >
+            </RadioButton>
 
-        </LinearLayout>
+        </RadioGroup>
+    </LinearLayout>
 
-
-
-    </FrameLayout>
-
-</LinearLayout>
+</RelativeLayout>

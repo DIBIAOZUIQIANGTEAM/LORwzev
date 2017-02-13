@@ -60,7 +60,6 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(context, "完成", Toast.LENGTH_SHORT).show();
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.wsns.lor.App;
 
-import com.amap.api.maps.model.LatLng;
-import com.amap.api.services.core.LatLonPoint;
+import com.baidu.location.BDLocation;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.UserInfo;
@@ -12,6 +11,5 @@ import cn.jpush.im.android.api.model.UserInfo;
 
 public class OnlineUserInfo {
     public static UserInfo myInfo= JMessageClient.getMyInfo() ;
-    public static LatLonPoint latLonPoint;
 
 }

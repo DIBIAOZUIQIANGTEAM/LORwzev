@@ -41,8 +41,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="c800877bbd4af6bd73fa02710bc037f4" />
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="91ELISvDfcMZn8irGswor9t02aP3m2Hs" />
+
 
         <activity
             android:name=".Activity.MainActivity"
@@ -70,21 +71,30 @@
                 <category android:name="jpush.testCategory" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity">
+        <activity android:name=".Activity.LoginActivity"
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.more.MyUserInfoActivity" />
-        <activity android:name=".Activity.seller.LocationActivity" />
-        <activity android:name=".Activity.seller.SellerDetailsActivity" />
-        <activity android:name=".Activity.order.ProgressActivity" />
+        <!--<activity android:name=".Activity.seller.LocationActivity" />-->
+        <activity android:name=".Activity.seller.SellerDetailsActivity"   android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.RegistersActivity" />
         <activity android:name=".Activity.ForgetPasswordActivity" />
         <activity android:name=".Activity.RegisterSuccessActivity" />
-
+        <activity android:name=".Activity.order.OrdresCreateActivity" />
+        <activity android:name=".Activity.order.NoteEditActivity" />
+        <activity android:name=".Activity.order.OrdersContentActivity" />
+        <activity android:name=".Activity.more.CheckConsumptionRecordsActivity" />
+        <activity android:name=".Activity.more.UserInfoActivity" />
+        <activity android:name=".Activity.more.UpdatePasswordActivity" />
+        <activity android:name=".Activity.more.UpdateUserNameActivity" />
+        <activity android:name=".chatting.ChatActivity"   android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Activity.PickPictureTotalActivity"/>
+        <activity android:name=".Activity.PickPictureActivity"/>
+        <activity android:name=".Activity.BrowserViewPagerActivity"/>
 
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
@@ -239,7 +249,7 @@
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="722c6d173c859f33536f05e1" /> <!--  </>值来自开发者平台取得的AppKey-->
-        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+            <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService"></service>
     </application>
 

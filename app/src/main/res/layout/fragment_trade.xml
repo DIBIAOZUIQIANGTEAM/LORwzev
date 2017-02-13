@@ -29,9 +29,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:text="生厂商" />
 
-                <com.view.FlowTagLayout
+                <com.wsns.lor.view.layout.FlowTagLayout
                     android:id="@+id/brand_flow_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -55,7 +57,7 @@
                     android:layout_margin="10dp"
                     android:text="型    号" />
 
-                <com.view.FlowTagLayout
+                <com.wsns.lor.view.layout.FlowTagLayout
                     android:id="@+id/type_flow_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -79,7 +81,7 @@
                     android:layout_margin="10dp"
                     android:text="您的选择" />
 
-                <com.view.FlowTagLayout
+                <com.wsns.lor.view.layout.FlowTagLayout
                     android:id="@+id/choice_flow_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -112,8 +114,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView8"
                     android:lines="5"
+                    android:padding="10dp"
                     android:gravity="top"
-                    android:background="@drawable/corners_bg" />
+                    android:background="@drawable/jmui_chat_input_bg" />
 
 
             </RelativeLayout>
@@ -139,7 +142,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="请填写您的预约信息" />
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -202,7 +205,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@null"
+                            android:background="@drawable/jmui_chat_input_bg"
                             android:hint="如:星期六12:00-14:00" />
 
 
@@ -235,7 +238,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@null"
+                            android:background="@drawable/jmui_chat_input_bg"
                             android:hint="真实姓名" />
 
 
@@ -269,7 +272,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@null"
+                            android:background="@drawable/jmui_chat_input_bg"
                             android:hint="上门地址,请详细填写" />
 
 
@@ -302,7 +305,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@null"
+                            android:background="@drawable/jmui_chat_input_bg"
                             android:hint="请保持开机状态"
                             android:inputType="phone" />
 
@@ -310,7 +313,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"

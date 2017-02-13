@@ -1,14 +1,13 @@
 package com.wsns.lor.http;
 
 
-import com.google.gson.Gson;
-import com.wsns.lor.entity.Goods;
-import com.wsns.lor.entity.GoodsHttpResult;
-import com.wsns.lor.entity.Order;
-import com.wsns.lor.entity.OrderHttpResult;
-import com.wsns.lor.entity.Seller;
-import com.wsns.lor.entity.SellerHttpResult;
-import com.wsns.lor.entity.TradeHttpResult;
+import com.wsns.lor.entity.DataAndCodeBean;
+import com.wsns.lor.entity.Orders;
+import com.wsns.lor.entity.OrdersProgress;
+import com.wsns.lor.entity.Page;
+import com.wsns.lor.entity.Records;
+import com.wsns.lor.entity.RepairGoods;
+import com.wsns.lor.entity.User;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -16,10 +15,17 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.JavaNetCookieJar;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Query;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -31,17 +37,17 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-//    public static final String BASE_URL = "http://192.168.191.1:8080/LORServer/";
+    //    public static final String BASE_URL = "http://192.168.191.1:8080/LORServer/";
 //    public static final String BASE_URL = "http://172.27.151.152:8080/LORServer/";
 //    public static final String BASE_URL = "http://192.168.43.135:8080/LORServer/";
 //    public static final String BASE_URL = "http://115.28.58.198/";
 //    public static final String BASE_URL = "http://119.29.52.160/LORServer/";
-    public static final String BASE_URL = "http://192.168.1.101:8080/Lor/";
+    public static final String BASE_URL = "http://192.168.1.103:8080/Lor/";
     private static final int DEFAULT_TIMEOUT = 5;
 
-    private  static Retrofit retrofit;
-    public   static LORService lorService;
-    private static OkHttpClient client;
+    private static Retrofit retrofit;
+    public static LORService lorService;
+    public static OkHttpClient client;
 
     static {
         CookieManager cookieManager = new CookieManager();
@@ -53,7 +59,7 @@ public class HttpMethods {
                 .cookieJar(new JavaNetCookieJar(cookieManager))
                 .build();
         retrofit = new Retrofit.Builder()
-                .client(builder.build())
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
@@ -61,10 +67,12 @@ public class HttpMethods {
 
     }
 
-    public static OkHttpClient getSharedClient(){
-        return client;
+    public static Request.Builder requestBuilderWithApi(String api){
+        String url=BASE_URL+"api/"+api;
+        System.out.println("访问了："+url);
+        return new Request.Builder()
+                .url(url);
     }
-
     //构造方法私有
     private HttpMethods() {
         lorService = retrofit.create(LORService.class);
@@ -77,53 +85,22 @@ public class HttpMethods {
 
     //获取单例
     public static HttpMethods getInstance() {
-        System.out.println("访问了:"+BASE_URL);
+        System.out.println("访问了:" + BASE_URL);
         return SingletonHolder.INSTANCE;
     }
 
 
 
+    public void getCurrentUser(Subscriber<DataAndCodeBean<List<RepairGoods>>> subscriber) {
 
-    /**
-     * 用于获取商家列表的数据
-     *
-     * @param subscriber  由调用者传过来的观察者对象
-     * @param operation   标识服务器操作
-     * @param NowLocation 定位
-     * @param start       起始值
-     * @param num         检索数目
-     */
-    public void getBusinessData(Subscriber<List<Seller>> subscriber, String operation, String NowLocation, String start, String num) {
-
-        Observable observable = lorService.getSellerListDate(operation, NowLocation, start, num)
-                .map(new SellerHttpResultFunc<List<Seller>>());
-
+        Observable observable = lorService.getCurrentUser()
+                .map(new HttpResultFunc());
         toSubscribe(observable, subscriber);
     }
+    public void getMyRecordsPage(Subscriber<DataAndCodeBean<List<Records>>> subscriber, int page) {
 
-    /**
-     * 用于订单创建的结果
-     *
-     * @param subscriber 由调用者传过来的观察者对象
-     * @Query("operation") String operation,
-     * @Query("sellerid") String sellerid,
-     * @Query("userid") String userid,
-     * @Query("tel") String tel,
-     * @Query("name") String name,
-     * @Query("time") String time,
-     * @Query("describe") String describe,
-     * @Query("type") String type,
-     * @Query("address") String address
-     */
-    public void getTradeResult(Subscriber<String> subscriber, String operation, String sellerid
-            , String userid, String tel, String name, String time
-            , String describe, String type, String address) {
-
-        Observable observable = lorService.getTradeResult(operation,sellerid
-                , userid,  tel,  name,  time
-                ,  describe,  type, address)
-                .map(new TradeHttpResultFunc());
-
+        Observable observable = lorService.getMyRecordsPage(page)
+                .map(new HttpResultFunc());
         toSubscribe(observable, subscriber);
     }
 
@@ -131,35 +108,110 @@ public class HttpMethods {
      * 用于维修商品的数据
      *
      * @param subscriber 由调用者传过来的观察者对象
-     * @param operation  服务器的操作
-     * @param sellerid   商家id
+     * @param seller_id  商家id
      */
-    public void getGoodsResult(Subscriber<List<Goods>> subscriber, String operation, String sellerid) {
+    public void getGoodsResult(Subscriber<DataAndCodeBean<List<RepairGoods>>> subscriber, String seller_id) {
 
-        Observable observable = lorService.getGoodsResult(operation, sellerid)
-                .map(new GoodsHttpResultFunc<List<Goods>>());
+        Observable observable = lorService.getGoodsResult(seller_id)
+                .map(new HttpResultFunc());
 
         toSubscribe(observable, subscriber);
     }
 
     /**
      * 用于订单的数据
-     *
-     * @param subscriber 由调用者传过来的观察者对象
-     * @param operation  服务器的操作
-     * @param orderID   订单编号
      */
-    public void getOrderResult(Subscriber<List<Order>> subscriber, String operation, String orderID) {
+    public void getOrderCreateResult(Subscriber<Orders> subscriber,
+                                     String seller_account,
+                                     String goods, String workTime,
+                                     String realName, String address,
+                                     String phone, double price,
+                                     String note, boolean isPayOnline) {
 
-        Observable observable = lorService.getOrderResult(operation, orderID)
-                .map(new OrderHttpResultFunc<List<Order>>());
+        Observable observable = lorService.getOrderCreateResult(seller_account, goods,workTime,realName,address,phone,price,note,isPayOnline)
+                .map(new HttpResultFunc());
 
         toSubscribe(observable, subscriber);
     }
 
+    public void getOrderByID(Subscriber<DataAndCodeBean<Orders>> subscriber,
+                                     int orders_id
+                                     ) {
 
+        Observable observable = lorService.getOrderByID(orders_id)
+                .map(new HttpResultFunc());
 
+        toSubscribe(observable, subscriber);
+    }
 
+    public void getOrdersProgressPage(Subscriber<DataAndCodeBean<Page<OrdersProgress>>> subscriber,
+                                      int page,  int orders_id
+    ) {
+
+        Observable observable = lorService.getOrdersProgressPage(page,orders_id)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+    public void addOrdersProgress(Subscriber<DataAndCodeBean<OrdersProgress>> subscriber,
+                                  String content, String title,int orders_id,int state) {
+
+        Observable observable = lorService.addOrdersProgress(content,title,orders_id,state)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void getMyOrderPage(Subscriber<DataAndCodeBean<Page<Orders>>> subscriber,
+                                  int page) {
+
+        Observable observable = lorService.getMyOrderPage(page)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void updateAvatar(Subscriber<DataAndCodeBean<User>> subscriber,
+                            String name, MultipartBody avatar) {
+
+        Observable observable = lorService.updateAvatar(name,avatar)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+    public void updatePassword(Subscriber<DataAndCodeBean<User>> subscriber,
+                              String newpassword) {
+
+        Observable observable = lorService.updatePassword(newpassword)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void updateName(Subscriber<DataAndCodeBean<User>> subscriber,
+                          String username) {
+
+        Observable observable = lorService.updateName(username)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+    public void forgetPassword(Subscriber<DataAndCodeBean<User>> subscriber,
+                                    String account,String newpassword) {
+
+        Observable observable = lorService.forgetPassword(account,newpassword)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
+    public void findUser(Subscriber<DataAndCodeBean<User>> subscriber,
+                               String account) {
+
+        Observable observable = lorService.findUser(account)
+                .map(new HttpResultFunc());
+
+        toSubscribe(observable, subscriber);
+    }
     public static <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
         o.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -168,56 +220,15 @@ public class HttpMethods {
     }
 
 
-
-    private class SellerHttpResultFunc<T> implements Func1<SellerHttpResult<T>, T> {
+    private class HttpResultFunc<T> implements Func1<DataAndCodeBean<T>, T> {
 
         @Override
-        public T call(SellerHttpResult<T> httpResult) {
-
-            System.out.println(httpResult.toString());
-            if (httpResult.getCode().equals("2")) {
-                throw new ApiException(100);
+        public T call(DataAndCodeBean<T> httpResult) {
+            if (httpResult.getCode() != 1) {
+                throw new ApiException(httpResult.getMessege());
             }
-            return httpResult.getSeller();
+            return httpResult.getData();
         }
     }
 
-
-    private class TradeHttpResultFunc<T> implements Func1<TradeHttpResult<T>, T> {
-
-        @Override
-        public T call(TradeHttpResult<T> httpResult) {
-
-            System.out.println("TradeHttpResult"+httpResult.toString());
-            if (httpResult.getCode().equals("2")) {
-                throw new ApiException(100);
-            }
-            return httpResult.getOrderID();
-        }
-    }
-    private class GoodsHttpResultFunc<T> implements Func1<GoodsHttpResult<T>, T> {
-
-
-        @Override
-        public T call(GoodsHttpResult<T> httpResult) {
-            System.out.println("GoodsHttpResult"+httpResult.getgoods());
-            if (httpResult.getCode().equals("2")) {
-                throw new ApiException(100);
-            }
-            return httpResult.getgoods();
-        }
-    }
-    private class OrderHttpResultFunc<T> implements Func1<OrderHttpResult<T>, T> {
-
-        @Override
-        public T call(OrderHttpResult<T> httpResult) {
-
-            System.out.println(httpResult.toString());
-            if (httpResult.getCode().equals("2")) {
-                throw new ApiException(100);
-            }
-            System.out.println( httpResult.getOrder());
-            return httpResult.getOrder();
-        }
-    }
 }

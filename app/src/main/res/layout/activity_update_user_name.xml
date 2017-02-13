@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_update_user_name"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wsns.lor.Activity.more.UpdateUserNameActivity">
+    <RelativeLayout
+        android:id="@+id/rl_post_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:elevation="3dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改昵称"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_new_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_corners_white"
+        android:gravity="start"
+        android:hint="请输入新昵称"
+        android:lines="1"
+        android:maxLength="10"
+        android:padding="5dp" />
+    <Button
+        android:id="@+id/btn_update_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_login"
+        android:layout_margin="5dp"
+        android:text="修改"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
