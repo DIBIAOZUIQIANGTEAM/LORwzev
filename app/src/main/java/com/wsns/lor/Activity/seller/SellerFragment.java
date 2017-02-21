@@ -119,7 +119,7 @@ public class SellerFragment extends Fragment implements BDLocationListener, Clou
         NearbySearchInfo info = new NearbySearchInfo();
         info.ak = "IwiUF0Rcfn1ckrPLeABUw4r9OwXEL6NP";
         info.geoTableId = 115331;
-        info.radius = 30000;
+        info.radius = 3000;
         info.sortby = "distance:1";
         info.location = BDUtil.location2Str(mBDLocation);
 
@@ -207,20 +207,20 @@ public class SellerFragment extends Fragment implements BDLocationListener, Clou
                 && result.poiList.size() > 0) {
             for (CloudPoiInfo info : result.poiList) {
 
-                System.out.println(info.distance + " " + info.title);
-                Sellers sellers = new Sellers();
-                sellers.setTitle(info.title);
-                sellers.setStar((Double) info.extras.get("star"));
-                sellers.setTurnover((int) info.extras.get("turnover"));
-                sellers.setDistance(info.distance);
-                sellers.setTradeTypes((int) info.extras.get("tradeTypes"));
-                sellers.setCity(info.city);
-                sellers.setRepairsTypes((String) info.extras.get("repairsTypes"));
-                sellers.setMinimums((int) info.extras.get("minimums"));
-                sellers.setAvatar((String) info.extras.get("avatar"));
-                sellers.setAccount((String) info.extras.get("account"));
-
-                sellersList.add(sellers);
+//                System.out.println(info.distance + " " + info.title);
+//                Sellers sellers = new Sellers();
+//                sellers.setTitle(info.title);
+//                sellers.setStar((Double) info.extras.get("star"));
+//                sellers.setTurnover((int) info.extras.get("turnover"));
+//                sellers.setDistance(info.distance);
+//                sellers.setTradeTypes(0);
+//                sellers.setCity(info.city);
+//                sellers.setRepairsTypes((String) info.extras.get("repairsTypes"));
+////                sellers.setMinimums((int) info.extras.get("minimums"));
+//                sellers.setAvatar((String) info.extras.get("avatar"));
+//                sellers.setAccount((String) info.extras.get("account"));
+//
+//                sellersList.add(sellers);
             }
         }
         adapter.notifyDataSetChanged();

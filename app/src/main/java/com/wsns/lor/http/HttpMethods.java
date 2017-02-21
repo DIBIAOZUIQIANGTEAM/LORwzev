@@ -18,14 +18,9 @@ import okhttp3.JavaNetCookieJar;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.Query;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -37,12 +32,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    //    public static final String BASE_URL = "http://192.168.191.1:8080/LORServer/";
-//    public static final String BASE_URL = "http://172.27.151.152:8080/LORServer/";
-//    public static final String BASE_URL = "http://192.168.43.135:8080/LORServer/";
-//    public static final String BASE_URL = "http://115.28.58.198/";
-//    public static final String BASE_URL = "http://119.29.52.160/LORServer/";
-    public static final String BASE_URL = "http://192.168.1.103:8080/Lor/";
+    public static final String BASE_URL = "http://192.168.191.1:8080/Lor/";
     private static final int DEFAULT_TIMEOUT = 5;
 
     private static Retrofit retrofit;

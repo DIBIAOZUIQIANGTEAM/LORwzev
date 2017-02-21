@@ -11,14 +11,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wsns.lor.Activity.message.MessageFragment;
-import com.wsns.lor.fragment.chat.ConversationListFragment;
-import com.wsns.lor.fragment.orders.OrderListFragment;
 import com.wsns.lor.Activity.seller.SellerFragment;
 import com.wsns.lor.R;
+import com.wsns.lor.fragment.chat.ConversationListFragment;
 import com.wsns.lor.fragment.more.MyProfileFragment;
+import com.wsns.lor.fragment.orders.OrderListFragment;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.event.LoginStateChangeEvent;
 import cn.jpush.im.android.api.event.MessageEvent;
 import cn.jpush.im.android.api.model.UserInfo;
@@ -56,6 +56,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         JMessageClient.registerEventReceiver(this);
+        JMessageClient.getUserInfo("11111", "36c99e574e57975069be050c", new GetUserInfoCallback() {
+            @Override
+            public void gotResult(int responseCode, String responseMessage, UserInfo info) {
+                // 获取到跨应用的用户信息
+                System.out.println(responseCode+responseMessage);
+            }
+        });
         initView();
         if (savedInstanceState == null) {
             // 设置默认的Fragment
