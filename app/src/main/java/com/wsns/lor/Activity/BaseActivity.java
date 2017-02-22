@@ -23,7 +23,7 @@ import cn.jpush.im.android.api.event.LoginStateChangeEvent;
 import cn.jpush.im.android.api.model.UserInfo;
 
 /**
- * Created by Ken on 2015/3/13.
+ * 极光IM基础Activity
  */
 public class BaseActivity extends Activity {
     private static final String TAG = "BaseActivity";
