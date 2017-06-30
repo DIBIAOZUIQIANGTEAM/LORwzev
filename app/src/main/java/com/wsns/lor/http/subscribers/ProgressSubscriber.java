@@ -1,15 +1,22 @@
 package com.wsns.lor.http.subscribers;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 
+import com.wsns.lor.activity.MainActivity;
+import com.wsns.lor.activity.login.LoginActivity;
+import com.wsns.lor.http.entity.User;
 import com.wsns.lor.http.progress.ProgressCancelListener;
 import com.wsns.lor.http.progress.ProgressDialogHandler;
+import com.wsns.lor.view.layout.VRefreshLayout;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
+import cn.jpush.im.android.api.JMessageClient;
 import rx.Subscriber;
 
 /**
@@ -22,23 +29,25 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
 
     private SubscriberOnNextListener mSubscriberOnNextListener;
     private ProgressDialogHandler mProgressDialogHandler;
-
+    VRefreshLayout vRefreshLayout;
     private Context context;
-
-    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context,boolean showDialog) {
+    User user;
+    String s;
+    boolean showDialog;
+    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context, boolean showDialog) {
         this.mSubscriberOnNextListener = mSubscriberOnNextListener;
         this.context = context;
-        if (showDialog)
-        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        this.showDialog=showDialog;
+
     }
 
-    private void showProgressDialog(){
+    private void showProgressDialog() {
         if (mProgressDialogHandler != null) {
             mProgressDialogHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG).sendToTarget();
         }
     }
 
-    private void dismissProgressDialog(){
+    private void dismissProgressDialog() {
         if (mProgressDialogHandler != null) {
             mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_PROGRESS_DIALOG).sendToTarget();
             mProgressDialogHandler = null;
@@ -65,17 +74,29 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     /**
      * 对错误进行统一处理
      * 隐藏ProgressDialog
+     *
      * @param e
      */
     @Override
     public void onError(Throwable e) {
+        if (vRefreshLayout != null) {
+            vRefreshLayout.refreshComplete();
+        }
+        if (user == null&& !context.getClass().getName().equals(context.getClass().getName())) {
+            System.out.println(context.getClass().getName()+"aaaaaaaaaaaaaaa"+context.getClass().getName());
+            Intent itnt = new Intent(context, LoginActivity.class);
+            ( (Activity)context).startActivityForResult(itnt, 111);
+            JMessageClient.logout();
+
+        }
+
         if (e instanceof SocketTimeoutException) {
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else if (e instanceof ConnectException) {
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context,  e.getMessage(), Toast.LENGTH_SHORT).show();
-            System.out.println("error:" +e.toString());
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            System.out.println("error:" + e.toString());
         }
         dismissProgressDialog();
 
@@ -100,6 +121,24 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     public void onCancelProgress() {
         if (!this.isUnsubscribed()) {
             this.unsubscribe();
+
         }
+    }
+
+    @Override
+    public void setVRefreshLayout(VRefreshLayout vRefreshLayout) {
+        this.vRefreshLayout = vRefreshLayout;
+    }
+
+    @Override
+    public void setUser(User user) {
+        this.user=user;
+    }
+
+    public void setProgressText(String s) {
+        this.s=s;
+        if (showDialog)
+            mProgressDialogHandler = new ProgressDialogHandler(context, this, s,true);
+
     }
 }

@@ -12,11 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.wsns.lor.Activity.order.OrdersContentActivity;
-import com.wsns.lor.Adapter.OrdersListAdapter;
+import com.wsns.lor.activity.order.OrdersContentActivity;
+import com.wsns.lor.adapter.OrdersListAdapter;
 import com.wsns.lor.R;
-import com.wsns.lor.entity.Orders;
-import com.wsns.lor.entity.Page;
+import com.wsns.lor.http.entity.Orders;
 import com.wsns.lor.http.HttpMethods;
 import com.wsns.lor.http.subscribers.ProgressSubscriber;
 import com.wsns.lor.http.subscribers.SubscriberOnNextListener;
@@ -38,15 +37,16 @@ public class OrderListFragment extends Fragment {
     int page = 0;
     int NOT_MORE_PAGE = -1;
     private static List<Orders> mOrders = new ArrayList<Orders>();
-    Page<Orders> ordersPage;
-    boolean firstBuilt=true;
+    List<Orders> ordersPage;
+    boolean firstBuilt = true;
     private SubscriberOnNextListener getMyOrderOnNext;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_page_order_list, null);
-            activity= getActivity();
+            activity = getActivity();
             adpter = new OrdersListAdapter(activity, mOrders);
             mListView = (ListView) view.findViewById(R.id.listView);
             btnLoadMore = inflater.inflate(R.layout.list_foot, null);
@@ -56,7 +56,7 @@ public class OrderListFragment extends Fragment {
             btnLoadMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (page!=NOT_MORE_PAGE) {
+                    if (page != NOT_MORE_PAGE) {
                         refreshOrdersList();
                     }
                 }
@@ -64,27 +64,26 @@ public class OrderListFragment extends Fragment {
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent=new Intent(activity, OrdersContentActivity.class);
-                    Bundle bundle=new Bundle();
-                    bundle.putSerializable("orders",mOrders.get(i));
+                    Intent intent = new Intent(activity, OrdersContentActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("orders_id", mOrders.get(i).getId()+"");
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
             initHeaderView();
-            getMyOrderOnNext= new SubscriberOnNextListener<Page<Orders>>() {
+            getMyOrderOnNext = new SubscriberOnNextListener<List<Orders>>() {
                 @Override
-                public void onNext(Page<Orders> ordersPage) {
-                    OrderListFragment.this.ordersPage=ordersPage;
+                public void onNext(List<Orders> ordersPage) {
+                    OrderListFragment.this.ordersPage = ordersPage;
                     setDate();
 
                 }
             };
-            refreshOrdersList();
+
         }
         return view;
     }
-
 
 
     private void initHeaderView() {
@@ -96,7 +95,7 @@ public class OrderListFragment extends Fragment {
             mRefreshLayout.addOnRefreshListener(new VRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    page=0;
+                    page = 0;
                     mOrders.clear();
                     refreshOrdersList();
                 }
@@ -104,35 +103,25 @@ public class OrderListFragment extends Fragment {
         }
 
         mRefreshLayout.setHeaderView(mRefreshLayout.getDefaultHeaderView());
-        mRefreshLayout.setBackgroundColor(Color.parseColor("#ffc130"));
+        mRefreshLayout.setBackgroundColor(Color.parseColor("#ffffff"));
     }
 
     private void setDate() {
         mRefreshLayout.refreshComplete();
+        mOrders.clear();
+        mOrders.addAll(ordersPage);
+        adpter.notifyDataSetChanged();
 
-        textLoadMore.setEnabled(true);
-        textLoadMore.setText("数据解析中");
-        List<Orders> datas = ordersPage.getContent();
-
-        if(ordersPage.getTotalPages()!=page){
-            textLoadMore.setText("加载更多");
-            mOrders.addAll(ordersPage.getContent());
-            adpter.notifyDataSetChanged();
-        }
-        else
-        {
-            page=NOT_MORE_PAGE;
-            textLoadMore.setText("没有新内容");
-            mOrders.addAll(ordersPage.getContent());
-            adpter.notifyDataSetChanged();
-        }
     }
 
     private void refreshOrdersList() {
-        textLoadMore.setEnabled(false);
-        textLoadMore.setText("加载中");
         HttpMethods.getInstance().getMyOrderPage(new ProgressSubscriber(getMyOrderOnNext, activity, false), page++);
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        page=0;
+        refreshOrdersList() ;
+    }
 }

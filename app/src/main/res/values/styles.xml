@@ -19,16 +19,17 @@
     </style>
 
 
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
     <style name="mystyle" parent="android:Animation">
-    <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>  //进入时的动画
-    <item name="@android:windowExitAnimation">@anim/dialog_exit</item>    //退出时的动画
-</style>
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+        //进入时的动画
+        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
+        //退出时的动画
+    </style>
 
     <style name="AnimationFade">
 
@@ -149,7 +150,7 @@
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 
-    <style name="jmui_loading_dialog_style" >
+    <style name="jmui_loading_dialog_style">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
@@ -180,12 +181,42 @@
         <item name="android:textColor">#4e4e4e</item>
         <item name="android:gravity">left|center_vertical</item>
     </style>
+
     <style name="round_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:background">@drawable/round_check_box_bg</item>
         <item name="android:button">@null</item>
     </style>
+
     <style name="default_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:background">@drawable/default_check_box_style</item>
         <item name="android:button">@null</item>
+    </style>
+
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/still</item>
+        <item name="android:windowExitAnimation">@anim/still</item>
+    </style>
+    <style name="ProgressBarHorizontal_color" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/loading_progress_bar</item>
+        <item name="android:minHeight">2dip</item>
+        <item name="android:maxHeight">2dip</item>
+    </style>
+    <!-- HDialogBuilder light-->
+    <style name="hd_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <!-- HDialogBuilder dim-->
+    <style name="hd_dialog_dim" parent="hd_dialog">
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 </resources>

@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wsns.lor.R;
-import com.wsns.lor.entity.Orders;
+import com.wsns.lor.http.entity.Orders;
 import com.wsns.lor.http.HttpMethods;
-import com.wsns.lor.utils.DateToString;
+import com.wsns.lor.utils.DataUtil;
 
 
 public class OrdersDetailFrament extends Fragment {
@@ -25,7 +25,7 @@ public class OrdersDetailFrament extends Fragment {
     TextView titleText;
     ImageView avatarImg;
     TextView quantityText;
-    TextView priceText;
+
     TextView sumText;
     TextView paywayText;
     TextView nameText, phoneText, addressText;
@@ -43,15 +43,22 @@ public class OrdersDetailFrament extends Fragment {
             view = inflater.inflate(R.layout.fragment_orders_detail, null);
 
         }
+        if (orders!=null)
+        {
+            initView() ;
+        }
         return view;
     }
 
 
     private void initView() {
+        if (view == null)
+            return;
+
         nameText = (TextView) view.findViewById(R.id.tv_name);
         avatarImg = (ImageView) view.findViewById(R.id.img_avatar);
         quantityText = (TextView) view.findViewById(R.id.tv_quantity);
-        priceText = (TextView) view.findViewById(R.id.tv_price);
+
         sumText = (TextView) view.findViewById(R.id.tv_sum_1);
         titleText = (TextView) view.findViewById(R.id.tv_title);
         paywayText = (TextView) view.findViewById(R.id.tv_orders_payway);
@@ -65,18 +72,18 @@ public class OrdersDetailFrament extends Fragment {
         nameText.setText(orders.getSeller().getName());
         Picasso.with(activity).load(HttpMethods.BASE_URL + orders.getSeller().getAvatar()).resize(30, 30).centerInside().error(R.drawable.unknow_avatar).into(avatarImg);
         quantityText.setText(orders.getWorkTime());
-        priceText.setText(orders.getPrice()+"");
-        sumText.setText(orders.getPrice()+ "元");
+
+        sumText.setText(DataUtil.doubleTrans1(orders.getPrice()) + "元");
         titleText.setText(orders.getGoods());
         if (orders.isPayOnline())
             paywayText.setText("在线支付");
         else
             paywayText.setText("货到付款");
 
-        contactNameText.setText(orders.getSeller().getName());
+        contactNameText.setText(orders.getRealName());
         phoneText.setText(orders.getPhone());
         addressText.setText(orders.getAddress());
-        ordersIdText.setText(orders.getId()+"");
+        ordersIdText.setText(orders.getId() + "");
         ordersCreateTimeText.setText(orders.getCreateDate());
     }
 

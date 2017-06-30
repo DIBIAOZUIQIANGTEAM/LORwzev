@@ -50,7 +50,7 @@
         android:clickable="true"
         android:background="@drawable/jmui_list_item_bg">
 
-        <com.wsns.lor.chatting.CircleImageView
+        <com.wsns.lor.other.chatting.CircleImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"

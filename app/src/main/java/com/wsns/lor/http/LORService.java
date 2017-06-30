@@ -1,22 +1,28 @@
 package com.wsns.lor.http;
 
-import com.wsns.lor.entity.DataAndCodeBean;
-import com.wsns.lor.entity.Orders;
-import com.wsns.lor.entity.OrdersProgress;
-import com.wsns.lor.entity.Page;
-import com.wsns.lor.entity.Records;
-import com.wsns.lor.entity.RepairGoods;
-import com.wsns.lor.entity.User;
+import com.wsns.lor.http.entity.DataAndCodeBean;
+import com.wsns.lor.http.entity.Orders;
+import com.wsns.lor.http.entity.OrdersComment;
+import com.wsns.lor.http.entity.OrdersProgress;
+import com.wsns.lor.http.entity.PublishAd;
+import com.wsns.lor.http.entity.Records;
+import com.wsns.lor.http.entity.RepairGoods;
+import com.wsns.lor.http.entity.Seller;
+import com.wsns.lor.http.entity.User;
 
 import java.util.List;
 
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
+import retrofit2.http.Streaming;
 import rx.Observable;
 
 /**
@@ -24,15 +30,28 @@ import rx.Observable;
  */
 public interface LORService {
 
+    @FormUrlEncoded
     @POST("api/user/login")
-    Observable<DataAndCodeBean<User>> getUserDate(@Query("account") String username, @Query("passwordHash") String password);
+    Observable<DataAndCodeBean<User>> getUserDate(@Field("account") String username, @Field("passwordHash") String password);
 
     @POST("api/user/register")
-    Observable<DataAndCodeBean<User>> getRegisterResult(@Query("account") String account, @Query("passwordHash") String passwordHash);
+    Observable<DataAndCodeBean<User>> getRegisterResult(@Body User user);
 
-    @POST("api/user/me")
+    @GET("api/user/me")
     Observable<DataAndCodeBean<User>> getCurrentUser();
 
+
+    @GET("api/user/getSellers")
+    Observable<DataAndCodeBean<List<Seller>>> getSellers(@Query("location") String location);
+
+    @GET("api/user/getSellersByType")
+    Observable<DataAndCodeBean<List<Seller>>> getSellersByType(@Query("location") String location,@Query("repairsTypes") String repairsTypes);
+
+    @GET("api/user/getSellersOrderByTurnover")
+    Observable<DataAndCodeBean<List<Seller>>> getSellersOrderByTunover();
+
+    @GET("api/user/getSellersOrderByCommentCount")
+    Observable<DataAndCodeBean<List<Seller>>> getSellersOrderByCommentCount();
 
 
     @GET("api/repairGoods/bySellerID")
@@ -40,41 +59,73 @@ public interface LORService {
 
     @POST("api/orders/add")
     Observable<DataAndCodeBean<Orders>> getOrderCreateResult(@Query("seller_account") String seller_account,
-                                                                   @Query("goods") String goods, @Query("workTime") String workTime,
-                                                                   @Query("realName") String realName, @Query("address") String address,
-                                                                   @Query("phone") String phone, @Query("price") double price,
-                                                                   @Query("note") String note,
-                                                                   @Query("isPayOnline") boolean isPayOnline);
+                                                             @Body Orders orders);
+
+    @FormUrlEncoded
     @POST("api/orders/getOrders")
-    Observable<DataAndCodeBean<Page<Orders>>> getOrderByID(@Query("orders_id") int orders_id);
+    Observable<DataAndCodeBean<Orders>> getOrderByID(@Field("orders_id") int orders_id);
 
+    @FormUrlEncoded
     @POST("api/orders/progress/byOrdersId")
-    Observable<DataAndCodeBean<Page<OrdersProgress>>> getOrdersProgressPage(@Query("page") int page,@Query("orders_id") int orders_id);
+    Observable<DataAndCodeBean<List<OrdersProgress>>> getOrdersProgressPage(@Field("page") int page,@Field("orders_id") int orders_id);
 
+    @FormUrlEncoded
     @POST("api/orders/progress/add")
-    Observable<DataAndCodeBean<OrdersProgress>> addOrdersProgress(@Query("content") String content,
-                                                                        @Query("title") String title, @Query("orders_id") int orders_id,
-                                                                        @Query("state") int state);
-    @POST("api/orders/my")
-    Observable<DataAndCodeBean<Page<Orders>>> getMyOrderPage(@Query("page") int page);
+    Observable<DataAndCodeBean<OrdersProgress>> addOrdersProgress(@Field("content") String content,
+                                                                        @Field("title") String title, @Field("orders_id") int orders_id,
+                                                                        @Field("state") int state);
 
+
+    @FormUrlEncoded
+    @POST("api/orders/my")
+    Observable<DataAndCodeBean<List<Orders>>> getMyOrderPage(@Field("page") int page);
+
+    @FormUrlEncoded
     @POST("api/rec/records")
-    Observable<DataAndCodeBean<Page<Records>>> getMyRecordsPage(@Query("page") int page);
+    Observable<DataAndCodeBean<List<Records>>> getMyRecordsPage(@Field("page") int page);
 
     @Multipart
     @POST("api/user/update/avatar")
-    Observable<DataAndCodeBean<User>> updateAvatar(@Part("avatar") String description,@Part("file\"; filename=\"image.png\"")  RequestBody avatar);
+    Observable<DataAndCodeBean<User>> updateAvatar(@Part("avatar\"; filename=\"avatar.png") RequestBody avatar);
+
+    @FormUrlEncoded
     @POST("api/user/update/password")
-    Observable<DataAndCodeBean<User>> updatePassword(@Query("newPassword") String newPassword);
+    Observable<DataAndCodeBean<User>> updatePassword(@Field("newPassword") String newPassword);
+
+    @FormUrlEncoded
     @POST("api/user/update/userName")
-    Observable<DataAndCodeBean<User>> updateName(@Query("userName") String userName);
+    Observable<DataAndCodeBean<User>> updateName(@Field("userName") String userName);
+
+    @FormUrlEncoded
     @POST("api/user/forget/password")
-    Observable<DataAndCodeBean<User>> forgetPassword(@Query("account") String account,@Query("newPassword") String newPassword);
+    Observable<DataAndCodeBean<User>> forgetPassword(@Field("account") String account,@Field("newPassword") String newPassword);
+
+    @FormUrlEncoded
     @POST("api/user/finduser")
-    Observable<DataAndCodeBean<User>> findUser(@Query("account") String account);
+    Observable<DataAndCodeBean<User>> findUser(@Field("account") String account);
+
+    @GET("api/adv/getadv")
+    Observable<DataAndCodeBean<List<PublishAd>>> getAdvertisement();
+
+    @GET("api/update/getversion")
+    Observable<DataAndCodeBean> getVersion(@Query("versionCode") int versionCode);
+
+    @Streaming
+    @GET("api/update/download")
+    Observable<ResponseBody> download();
 
 
+    @FormUrlEncoded
+    @POST("api/comment/user/comment")
+    Observable<DataAndCodeBean<OrdersComment>> comment(@Field("comments") String comments, @Field("id") String id);
 
 
+    @FormUrlEncoded
+    @POST("api/comment/user/getSellerComments")
+    Observable<DataAndCodeBean<List<OrdersComment>>> findCommentsBySellerForUser(@Field("account") String account);
+
+
+    @POST("api/comment/user/getComments")
+    Observable<DataAndCodeBean<List<OrdersComment>>> findCommentsByUser();
 
 }

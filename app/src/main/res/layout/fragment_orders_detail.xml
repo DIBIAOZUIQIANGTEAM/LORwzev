@@ -139,13 +139,15 @@
                             android:background="#F2F2F2"></View>
 
                         <TextView
-                            android:id="@+id/tv_price"
+                            android:id="@+id/tv_sum_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="20dp"
-                            android:text="13" />
+                            android:text="13元"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="15dp"  />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -158,29 +160,7 @@
                             android:textSize="15dp" />
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="#F2F2F2"></View>
-
-                        <TextView
-                            android:id="@+id/tv_sum_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="20dp"
-                            android:text="13元"
-                            android:textColor="@android:color/holo_red_light"
-                            android:textSize="15dp" />
-
-                    </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout

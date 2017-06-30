@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/title_bar_container"
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_bar_height"
-    android:background="@color/jmui_jpush_blue"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:background="#ddffffff"
+    android:elevation="3dp"
 
-    <FrameLayout
-        android:id="@+id/title_bar_left_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:paddingLeft="@dimen/default_padding_left"></FrameLayout>
+    >
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout7"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/title_bar_title"
@@ -27,23 +32,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_large_size" />
 
-        <TextView
-            android:id="@+id/title_bar_subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:visibility="gone" />
+        />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/title_bar_right_layout"
+    <TextView
+        android:id="@+id/password_recover"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:paddingRight="@dimen/default_padding_right"></FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="忘记密码?"
+        android:textColor="#30b7ff" />
 
-</LinearLayout>
+</RelativeLayout>

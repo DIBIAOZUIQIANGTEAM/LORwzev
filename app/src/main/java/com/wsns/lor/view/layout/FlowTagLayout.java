@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
-import com.wsns.lor.Listener.OnTagClickListener;
-import com.wsns.lor.Listener.OnTagSelectListener;
+import com.wsns.lor.view.layout.listener.OnTagClickListener;
+import com.wsns.lor.view.layout.listener.OnTagSelectListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;

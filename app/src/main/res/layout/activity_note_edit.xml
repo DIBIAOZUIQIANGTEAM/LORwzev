@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#f2f2f2">
     <RelativeLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/ll_location"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#fff"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="添加备注"
+            android:text="编辑内容"
             android:textColor="#000"
             android:textSize="18dp"
             android:layout_centerVertical="true"
@@ -50,12 +50,12 @@
         android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/ll_location"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:background="@drawable/bg_corners_white"
         android:gravity="start"
-        android:hint="输入备注，最多100字哦"
+        android:hint="输入评价，最多100字哦"
         android:lines="5"
         android:maxLength="100"
         android:padding="5dp" />

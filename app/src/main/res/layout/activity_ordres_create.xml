@@ -55,7 +55,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/ll_location"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
@@ -86,7 +86,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/ll_location"
         android:layout_alignParentStart="true">
 
         <LinearLayout
@@ -206,49 +206,6 @@
                         android:src="@drawable/enter" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/rl_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <TextView
-                        android:id="@+id/tv_note"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_toEndOf="@+id/text2"
-                        android:maxEms="10"
-                        android:singleLine="true"
-                        android:textColor="#000"
-                        android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="#F2F2F2"></View>
-
-                    <TextView
-                        android:id="@+id/text2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="20dp"
-                        android:text="描述"
-                        android:textColor="#000"
-                        android:textSize="15dp" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/enter" />
-                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -350,13 +307,15 @@
                         android:background="#F2F2F2"></View>
 
                     <TextView
-                        android:id="@+id/tv_price"
+                        android:id="@+id/tv_sum_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="20dp"
-                        android:text="13" />
+                        android:text="13元"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="15dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -369,29 +328,7 @@
                         android:textSize="15dp" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="#F2F2F2"></View>
-
-                    <TextView
-                        android:id="@+id/tv_sum_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="20dp"
-                        android:text="13元"
-                        android:textColor="@android:color/holo_red_light"
-                        android:textSize="15dp" />
-
-                </RelativeLayout>
             </LinearLayout>
 
 

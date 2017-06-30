@@ -92,7 +92,7 @@ public class SetAliasAndTagUtil {
                     Log.e(TAG, logs);
             }
 
-            ExampleUtil.showToast(logs, context.getApplicationContext());
+//            ExampleUtil.showToast(logs, context.getApplicationContext());
         }
 
     };

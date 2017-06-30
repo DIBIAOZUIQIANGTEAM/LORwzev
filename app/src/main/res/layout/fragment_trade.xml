@@ -10,6 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,6 +20,12 @@
             android:background="#ffffff"
             android:orientation="vertical"
             android:paddingBottom="30dp">
+
+            <LinearLayout
+                android:id="@+id/ll_goods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,8 +37,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
                     android:text="生厂商" />
 
                 <com.wsns.lor.view.layout.FlowTagLayout
@@ -93,7 +99,7 @@
                 android:layout_below="@+id/content_tv"
                 android:layout_marginTop="10dp"
                 android:background="#ddd" />
-
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -205,6 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:padding="5dp"
                             android:background="@drawable/jmui_chat_input_bg"
                             android:hint="如:星期六12:00-14:00" />
 
@@ -238,6 +245,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:padding="5dp"
                             android:background="@drawable/jmui_chat_input_bg"
                             android:hint="真实姓名" />
 
@@ -269,6 +277,7 @@
 
                         <EditText
                             android:id="@+id/et_address"
+                            android:padding="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -305,6 +314,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:padding="5dp"
                             android:background="@drawable/jmui_chat_input_bg"
                             android:hint="请保持开机状态"
                             android:inputType="phone" />
@@ -326,10 +336,11 @@
 
         <Button
             android:id="@+id/bt_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_margin="20dp"
-            android:background="@drawable/more_info_exit_background"
+            android:layout_gravity="center"
+            android:background="@drawable/design_blue_point"
             android:textColor="#ffffff"
             android:text="提交" />
     </LinearLayout>

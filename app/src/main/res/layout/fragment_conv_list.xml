@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/conv_fragment_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/jmui_jpush_blue">
+        android:background="@color/colorPrimary"
+        android:layout_height="40dp">
 
         <TextView
             android:id="@+id/main_title_bar_title"
@@ -20,6 +21,15 @@
             android:text="Title"
             android:textColor="@android:color/white"
             android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:src="@drawable/refresh"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/iv_refresh"
+            android:layout_marginRight="10dp"
+            android:layout_height="25dp" />
 
         <!--<ImageButton-->
             <!--android:id="@+id/create_group_btn"-->
@@ -35,8 +45,13 @@
     <ListView
         android:id="@+id/conv_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:divider="#ddd"
         android:headerDividersEnabled="false"
         android:dividerHeight="1dp"/>
+
+    <include
+        android:id="@+id/conversation_null"
+        layout="@layout/item_conversation_null"
+        ></include>
 </LinearLayout>

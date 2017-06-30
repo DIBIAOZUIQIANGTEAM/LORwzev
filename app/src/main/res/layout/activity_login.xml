@@ -3,62 +3,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/base_title_bar" />
 
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/tv_face"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:background="#fff"
-            app:civ_border_color="#ffffff"
-            app:civ_border_width="2dp"
-            android:src="@drawable/unknow_avatar" />
+    <LinearLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="bottom"
+        android:orientation="vertical">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_face">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_elevation_corners">
 
             <LinearLayout
+
                 android:id="@+id/input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal">
 
-                <com.wsns.lor.view.widgets.DropEditText
-                    android:id="@+id/drop_edit_text"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="请输入账号"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="10dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/et_pasword"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/drop_edit_text"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="请输入密码"
-                    android:paddingLeft="20dp" />
+                    <com.wsns.lor.view.widgets.DropEditText
+                        android:id="@+id/drop_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="请输入账号"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="10dp" />
+
+                    <EditText
+                        android:id="@+id/et_pasword"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/drop_edit_text"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="请输入密码"
+                        android:paddingLeft="20dp" />
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+
+                    android:id="@+id/tv_face"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:background="#00ffffff"
+                    android:src="@drawable/unknow_avatar"
+                    app:civ_border_color="#ffffff"
+                    app:civ_border_width="0dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -87,57 +106,44 @@
                     android:text="自动登录" />
             </LinearLayout>
 
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="35dp"
+                android:background="@drawable/design_white_point"
+                android:text="注册"
+                android:textColor="@color/colorPrimary" />
+
+
+
             <Button
                 android:id="@+id/username_sign_in_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_check"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/btn_login"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/design_blue_point"
                 android:focusable="true"
                 android:text="登录"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/password_recover"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/username_sign_in_button"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:text="忘记密码?"
-                android:textColor="#30b7ff" />
-
         </RelativeLayout>
-    </RelativeLayout>
-</ScrollView>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="40dp"
-                android:background="@null"
-                android:drawableTop="@drawable/login_regist"
-                android:text="注册"
-                android:textColor="#000" />
-
-        </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

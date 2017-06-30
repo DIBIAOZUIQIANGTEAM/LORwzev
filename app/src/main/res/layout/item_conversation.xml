@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
-            <com.wsns.lor.chatting.CircleImageView
+            <com.wsns.lor.other.chatting.CircleImageView
                 android:id="@+id/msg_item_head_icon"
                 android:layout_width="@dimen/item_head_icon_size"
                 android:layout_height="@dimen/item_head_icon_size"
@@ -83,6 +83,11 @@
                 android:textSize="16sp"
                 android:textColor="#808080" />
         </RelativeLayout>
-    </LinearLayout>
 
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#dadada" />
 </LinearLayout>

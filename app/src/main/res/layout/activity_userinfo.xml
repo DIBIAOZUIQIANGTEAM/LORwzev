@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eae7e7"
@@ -36,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/white"
         >
         <RelativeLayout
@@ -54,13 +56,15 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/av_user_avatar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/unknow_avatar"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="2dp"
                 android:layout_marginEnd="20dp" />
         </RelativeLayout>
         <View
@@ -74,7 +78,7 @@
             android:id="@+id/fragment_user_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            class="com.wsns.lor.fragment.InfoListFragment"
+            class="com.wsns.lor.fragment.personal.InfoListFragment"
             tools:layout="@layout/fragment_userinfo_list" />
         <View
             android:id="@+id/view1"
@@ -89,7 +93,7 @@
             android:id="@+id/fragment_user_coins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            class="com.wsns.lor.fragment.InfoListFragment"
+            class="com.wsns.lor.fragment.personal.InfoListFragment"
             tools:layout="@layout/fragment_userinfo_list" />
         <View
             android:id="@+id/view4"
@@ -102,13 +106,13 @@
             android:id="@+id/fragment_user_createdate"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            class="com.wsns.lor.fragment.InfoListFragment"
+            class="com.wsns.lor.fragment.personal.InfoListFragment"
             tools:layout="@layout/fragment_userinfo_list" />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl_change_password"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white">
@@ -128,7 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/btn_login"
-        android:layout_margin="5dp"
-        android:text="退出"
+        android:layout_margin="10dp"
+        android:text="注销"
         android:textColor="@android:color/white"/>
 </LinearLayout>

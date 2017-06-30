@@ -73,13 +73,6 @@
     <string name="cancel_refresh">取消刷新</string>
 
 
-
-
-
-
-
-
-
     <!--聊天相关-->
     <string name="network_disconnected_hint">当前网络不可用, 请检查你的网络设置</string>
     <string name="actionbar_msg">聊天</string>
@@ -266,7 +259,7 @@
     <string name="change_password_re_hit">再次填写密码</string>
     <string name="password_not_match_toast">两次输入的密码不一致</string>
     <string name="password_change_success_toast">修改成功，请牢记新密码</string>
-    <string name="set_do_not_disturb" >消息免打扰</string>
+    <string name="set_do_not_disturb">消息免打扰</string>
     <string name="set_do_not_disturb_success_hint">成功加入免打扰</string>
     <string name="remove_from_no_disturb_list_hint">已移除免打扰</string>
     <string name="add_to_blacklist">加入黑名单</string>

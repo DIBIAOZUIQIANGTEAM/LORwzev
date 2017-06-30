@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="50dp"
-    android:background="@color/colorPrimaryDark"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
+      <RelativeLayout
+        android:id="@+id/ll_seller_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:background="@drawable/btn_gray_selector"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        >
 
-
-        <TextView
-            android:id="@+id/tv_title"
+        <LinearLayout
+            android:id="@+id/ll_location"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:text="点击定位"
-            android:textColor="#ffffff"
-            android:textSize="16dp" />
-    </LinearLayout>
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
-    <LinearLayout
-        android:id="@+id/tv_right"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_gravity="right|center_vertical"
-        android:background="@drawable/btn_gray_selector"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
 
-        <TextView
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
 
-            android:layout_width="62dp"
-            android:layout_height="28dp"
-            android:gravity="center"
-            android:scaleType="centerCrop"
-            android:text="查找"
-            android:textColor="#ffffff"
-            android:textSize="16dp" />
-    </LinearLayout>
+                android:src="@drawable/location" />
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:maxWidth="200dp"
+                android:singleLine="true"
+                android:text="点击定位"
+                android:textColor="#000000"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+      </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd"
+        />
+</LinearLayout>

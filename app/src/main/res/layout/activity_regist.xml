@@ -35,7 +35,7 @@
 
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/ll_mobile"
+        android:id="@+id/ll_account"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -74,7 +74,7 @@
         android:text="下一步"
         android:textColor="#c4c3c3"
         android:background="#e4e2e2"
-        android:layout_below="@+id/ll_mobile"
+        android:layout_below="@+id/ll_account"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"/>

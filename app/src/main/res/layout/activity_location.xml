@@ -1,60 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dip" />
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/bmapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+    <include layout="@layout/menu_title_bar_address"/>
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/location_fragment"
+        class="com.wsns.lor.fragment.order.LocationFragment"
+        tools:layout="@layout/fragment_location"></fragment>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:background="#D000"
-        android:minWidth="100dip"
-        android:orientation="vertical"
-        android:padding="2dp"
-        android:layout_below="@+id/button1"
-        android:layout_toStartOf="@+id/button1"
-        android:layout_marginEnd="90dp">
-
-        <RadioGroup
-            android:background="#ffffff"
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="定位icon" >
-
-            <RadioButton
-                android:id="@+id/defaulticon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:checked="true"
-                android:text="默认图标" >
-            </RadioButton>
-
-            <RadioButton
-                android:id="@+id/customicon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:text="自定义图标" >
-            </RadioButton>
-
-        </RadioGroup>
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

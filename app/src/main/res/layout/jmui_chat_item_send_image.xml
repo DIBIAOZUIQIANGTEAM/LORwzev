@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp" >
 
-        <com.wsns.lor.chatting.CircleImageView
+        <com.wsns.lor.other.chatting.CircleImageView
             android:id="@+id/jmui_avatar_iv"
             style="@style/jmui_chat_item_sender_avatar_style" />
 
@@ -26,7 +26,7 @@
             android:maxWidth="200.0dip"
              >
 
-            <com.wsns.lor.chatting.BubbleImageView
+            <com.wsns.lor.other.chatting.BubbleImageView
                 android:id="@+id/jmui_picture_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

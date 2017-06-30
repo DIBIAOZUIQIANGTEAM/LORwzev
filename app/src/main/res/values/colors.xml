@@ -2,18 +2,19 @@
 <resources>
     <!--<color name="colorPrimary">#3F51B5</color>-->
     <color name="colorPrimary">#3c9aff</color>
-    <color name="colorPrimaryDark">#993c9aff</color>
+    <color name="colorPrimaryDark">#3c9aff</color>
     <color name="colorAccent">#3c9aff</color>
-    <color name="colorAccentpressed">#993c9aff</color>
+    <color name="colorAccentpressed">#3c9aff</color>
     <color name="transparence">#00000000</color>
 
     //################主界面########################
-    <color name="main_bottom_textcolor_normal">#fc7633</color>
-    <color name="main_bottom_textcolor_pressed">#fc7633</color>
+    <color name="main_bottom_textcolor_normal">#bfbfbf</color>
+    <color name="main_bottom_textcolor_pressed">#1296db</color>
     //################seller fragment########################
-    <color name="btn_gray_normal">#22000000</color>
 
+    <color name="btn_gray_normal">#99000000</color>
     <color name="btn_gray_pressed">#99000000</color>
+
     <color name="jmui_chat_text_color">#373334</color>
     <color name="jmui_item_click_bg_color">#dddddd</color>
     <color name="jmui_jpush_blue">#3f80dc</color>
@@ -47,4 +48,8 @@
     <color name="white">#FFFFFF</color>
 
     <color name="light_blue">#8CA4FF</color>
+    <color name="blackLight">#212121</color>
+    <color name="whiteLight">#F0F0F0</color>
+    <color name="tranBlackDark">#66000000</color>
+    <color name="tranBlackLight">#22000000</color>
 </resources>

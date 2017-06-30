@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wsns.lor.Activity.more.UpdateUserNameActivity">
+    tools:context="com.wsns.lor.activity.personal.UpdateUserNameActivity">
     <RelativeLayout
         android:id="@+id/rl_post_title"
         android:layout_width="match_parent"
@@ -32,11 +32,21 @@
             />
     </RelativeLayout>
 
+    <TextView
+        android:text="第一次登录请设置昵称~"
+        android:padding="5dp"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_init_nickname" />
+
     <EditText
         android:id="@+id/et_new_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/ll_location"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:background="@drawable/bg_corners_white"
@@ -49,8 +59,9 @@
         android:id="@+id/btn_update_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/btn_login"
         android:layout_margin="5dp"
         android:text="修改"
-        android:textColor="@android:color/white"/>
+        android:textColor="#c4c3c3"
+        android:background="#e4e2e2"
+        />
 </LinearLayout>

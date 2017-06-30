@@ -38,9 +38,10 @@
 
     <fragment
         android:id="@+id/frag_records"
-        class="com.wsns.lor.fragment.more.ConsumptionRecordsFragment"
+        class="com.wsns.lor.fragment.personal.ConsumptionRecordsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></fragment>
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_records_consumption"></fragment>
 
 
 </LinearLayout>

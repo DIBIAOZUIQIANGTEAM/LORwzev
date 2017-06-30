@@ -12,19 +12,21 @@ public class OrdersStateToText {
             case 1:
                 return"新订单";
             case 2:
-                return"待发货";
+                return"待上门";
             case 3:
                 return"待确认";
             case 4:
                 return"已完成";
             case 5:
-                return"收到评价";
-            case 6:
                 return"申请取消";
+            case 6:
+                return"拒绝取消";
             case 7:
                 return"已退款";
             case 8:
-                return"未退款";
+                return"已评价";
+            case 9:
+                return"已回复";
         }
         return "";
     }
@@ -35,19 +37,21 @@ public class OrdersStateToText {
             case 1:
                 return"新订单";
             case 2:
-                return"待发货";
+                return"待上门";
             case 3:
                 return"待确认";
             case 4:
                 return"已完成";
             case 5:
-                return"已评价";
-            case 6:
                 return"申请取消";
+            case 6:
+                return"拒绝取消";
             case 7:
-                return"已退款";
+                return"已关闭";
             case 8:
-                return"未退款";
+                return"已评价";
+            case 9:
+                return"已回复";
 
 
         }
