@@ -12,31 +12,18 @@
 
 ## 界面截图（[原图查看][3]）
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/1.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/2.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/3.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/4.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/5.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/6.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/7.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/8.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/9.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/10.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/11.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/12.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/13.png)
-
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/14.png)
 
 
