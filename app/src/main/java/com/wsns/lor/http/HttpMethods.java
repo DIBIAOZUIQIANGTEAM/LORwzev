@@ -36,7 +36,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "http://192.168.1.102:8080/lor/";
+    public static final String BASE_URL = "http://192.168.1.108:8080/lor/";
     private static final int DEFAULT_TIMEOUT = 5;
 
     private static Retrofit retrofit;
