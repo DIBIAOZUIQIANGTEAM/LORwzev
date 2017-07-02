@@ -11,6 +11,7 @@
 “应修联盟”是根据用户需求以及地理位置，为用户提供家电维修上门服务的服务平台。本项目为Android客户端（普通用户），能基于位置服务（LBS，Location Based Services），为用户提供周围的维修店信息。用户通过在线咨询、下订单、在线支付或者选择当面付款的流程预约上门服务。（[应修联盟商家版app地址][2]）
 
 ## 界面截图（[原图查看][3]）
+
 ![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/1.png)
 ![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/2.png)
 ![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/3.png)
