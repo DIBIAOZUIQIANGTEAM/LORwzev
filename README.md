@@ -16,15 +16,7 @@
 ![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/3.png)
 ![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/4.png)
 ![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/5.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/6.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/7.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/8.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/9.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/10.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/11.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/12.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/13.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/14.png)
+
 
 
 ## 其他话
