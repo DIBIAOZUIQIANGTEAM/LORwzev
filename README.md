@@ -12,11 +12,11 @@
 
 ## 界面截图（[原图查看][3]）
 
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/1.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/2.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/3.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/4.png)
-![image](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/5.png)
+![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/1.png)
+![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/2.png)
+![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/3.png)
+![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/4.png)
+![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/5.png)
 
 
 
