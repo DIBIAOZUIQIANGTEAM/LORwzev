@@ -12,7 +12,7 @@
 
 ## 界面截图（[原图查看][3]）
 
-![](https://github.com/DGUT-Asiasoft-2013/Client_DIBIAOZUIQIANGTEAM/blob/master/imgs/GIF.gif)
+![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/blob/master/imgs/1.png)
 ![](https://github.com/DGUT-Asiasoft-2013/Client_DIBIAOZUIQIANGTEAM/blob/master/imgs/GIF2.gif)
 ![](https://github.com/DGUT-Asiasoft-2013/Client_DIBIAOZUIQIANGTEAM/blob/master/imgs/GIF3.gif)
 ![](https://github.com/DGUT-Asiasoft-2013/Client_DIBIAOZUIQIANGTEAM/blob/master/imgs/GIF4.gif)
