@@ -40,10 +40,10 @@
 ![](https://github.com/DIBIAOZUIQIANGTEAM/Lor_Buyer/tree/master/imgs/14.png)
 
 
-##其他话
-    这个项目可以说贯穿了我大学对安卓开发学习的历程。
-    起初我只是一个因为兴趣自学了几天Android开发的人，因为兴趣和想着锻炼自己，被同学拉进这个大学生创新项目，当时队里五个人，除了我自学过几天Android，其他人都是只会C,C++（现在想想，太不靠谱了），后来因为表现突出（怪我咯）被导师委任负责人。进入正式开发阶段，队员接二连三退出，只剩下我和另一位同学。我理所当然负责起了两个APP的开发工作，他负责web网页开发。2015.6到2016.12，独自摸索，Android4.0到6.0，Eclipse到Android studio，高德地图sdk到百度地图sdk，环信sdk到极光sdk，ActivityGroup到ViewPager+Fragment，Material Design规范化，HttpURLConnection到Retrofit+Rxjava，前前后后我进行了三次大改动，才终于完成了这个项目。
-    这个项目是我花最多心血，也是我走上Android开发之路的第一个作品。
+## 其他话
+##### 这个项目可以说贯穿了我大学对安卓开发学习的历程。
+#####  起初我只是一个因为兴趣自学了几天Android开发的人，因为兴趣和想着锻炼自己，被同学拉进这个大学生创新项目，当时队里五个人，除了我自学过几天Android，其他人都是只会C,C++（现在想想，太不靠谱了），后来因为表现突出（怪我咯）被导师委任负责人。进入正式开发阶段，队员接二连三退出，只剩下我和另一位同学。我理所当然负责起了两个APP的开发工作，他负责web网页开发。2015.6到2016.12，独自摸索，Android4.0到6.0，Eclipse到Android studio，高德地图sdk到百度地图sdk，环信sdk到极光sdk，ActivityGroup到ViewPager+Fragment，Material Design规范化，HttpURLConnection到Retrofit+Rxjava，前前后后我进行了三次大改动，才终于完成了这个项目。
+##### 这个项目是我花最多心血，也是我走上Android开发之路的第一个作品。
 
 ------
 
